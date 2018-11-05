@@ -10,6 +10,7 @@ Node js permet donc l'utilisations de frameworks :
 	-b-crypt pour un hashage reconnu sur les mots de passe à envoyer en BDD
 	-blbl() pour les inputs et eviter les injections de script 
 	-Framework css au choix ( Il peut autant être Bootstrap que Semantic [Interdiction d'utiliser Materialize]) avec une légère préference pour Semantic UI pour ses formes plus arrondis et agréables à l'oeil en général
+	-Socket io pour le fil en vrac où les alumnis echangeront en direct , les messages seront supprimés chaque semaine pour ne pas surcharger les serveurs
 
 En terme moins technique en ce qui concerne les performances / Accessiblités vu que nous avons déjà évoqué la sécurité :
 

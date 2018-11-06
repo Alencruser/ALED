@@ -1,0 +1,28 @@
+{
+  "name": "eval_model",
+  "version": "1.0.0",
+  "description": "Hacktoberfest fini :",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alencruser/ALED.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alencruser/ALED/issues"
+  },
+  "homepage": "https://github.com/Alencruser/ALED#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "mysql": "^2.16.0"
+  }
+}

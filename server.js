@@ -126,6 +126,6 @@ app.all('*', function(req, res) {
   res.redirect("/");
 });
 //Ouverture du serveur
-http.listen(8080,()=>{
+http.listen(process.env.PORT||8080,()=>{
 	console.log('La plupart des gens disent qu\'on a besoin d\'amour pour vivre. En fait, on a surtout besoin d\'oxygène !')
 })

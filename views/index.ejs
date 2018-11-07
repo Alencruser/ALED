@@ -2,4 +2,29 @@
 <title></title>
 </head>
 <body>
-	
+	<%-include('partials/navbar.ejs')%>
+	<h1>Bienvenue <%=token%></h1>
+	<center>
+		<div id="chat" width="400px" height="400px" data-spy='scroll'></div>
+		<input type="text" id="input" placeholder="Entrez votre message ici">
+	</center>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+	<script>
+	var socket=io()
+	var user= '<%=user%>'
+	var chat=io.connect('http://localhost:8080/');
+	var div=document.getElementById('chat')
+	document.getElementById('input').addEventListener('keyup', function(e){
+		if(e.keyCode==13){
+			chat.emit('message',  document.getElementById('input').value)
+			document.getElementById('input').value=""
+		}
+	})
+
+	chat.on("send-message", function(data){
+		var p = document.createElement('p')
+		p.innerHTML ='<strong>'+user+'</strong>'+': '+data
+		div.append(p)
+	})
+</script>
+<%- include('partials/footer.ejs')%>

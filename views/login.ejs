@@ -1,0 +1,59 @@
+<%- include('partials/head.ejs')%>
+<title></title>
+</head>
+<body>
+	<%-include('partials/navbar.ejs')%>
+	<div class="col-sm-4 offset-sm-4">
+		<form action="<%if(locals.register){%>/signup<%}else{%>/connect<%}%>" method="POST">
+			<div class="form-group">
+				<label for="pseudo">Pseudonyme</label>
+				<input type="text" class="form-control" id="pseudo" name="pseudo">
+			</div>
+			<div class="form-group">
+				<label for="pass">Mot de passe</label>
+				<input type="password" class="form-control" id="pass" name="pass">
+			</div>
+			<%if(locals.register){%>
+			<div class="form-group">
+				<label for="email">Email</label>
+				<input type="text" id="email" class="form-control" name="email">
+			</div>
+			<div class="form-group">
+				<label for="firstName">Prenom</label>
+				<input type="text" class="form-control" id="firstName" name="firstName">
+			</div>
+			<div class="form-group">
+				<label for="lastName">Nom de famille</label>
+				<input type="text" class="form-control" id="lastName" name="lastName">
+			</div>
+			<div class="form-group">
+				<label for="birthDate">Date de naissance</label>
+				<input type="date" id="birthDate" class="form-control" name="birthDate">
+			</div>
+			<div class="form-group">
+				<label for="promo">Promo</label>
+				<input type="text" id="promo" class="form-control" name="promo">
+			</div>
+			<div class="form-group">
+				<label for="link">Lien de votre CV version en ligne</label>
+				<input type="text" id="link" class="form-control" name="curri">
+			</div>
+			<div class="form-group">
+				<label for="simplon">Es-tu simplonien ?</label>
+				<select name="simplon" id="simplon" class="form-control" name="simplon">
+					<option name="oui" selected value="oui">Oui</option>
+					<option name="non" value="non">Non</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="workin">Travailles-tu actuellement ?</label>
+				<select name="working" id="workin" class="form-control" name="working">
+					<option selected value="oui">Oui</option>
+					<option value="non">Non</option>
+				</select>
+			</div>
+			<%}%>
+			<button class="btn btn-primary" type="submit">Valider</button>
+		</form>
+	</div>
+	<%- include('partials/footer.ejs')%>

@@ -1,30 +1,40 @@
 <%- include('partials/head.ejs')%>
-<title></title>
+<title>Chat en Vrac des Alumnis</title>
+<link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="container-fluid">
 	<%-include('partials/navbar.ejs')%>
-	<h1>Bienvenue <%=token%></h1>
+	<nav aria-label="breadcrumb" class="bg-dark" id="help">
+  <ol class="breadcrumb bg-dark">
+    <li class="breadcrumb-item active mx-auto text-white" aria-current="page"><strong>Le Chat en Vrac</strong></li>
+  </ol>
+</nav>
+		<div id="chat" width="400px" height="400px" data-spy='scroll' class="border border-danger rounded table table-striped table-dark bg-dark"></div>
 	<center>
-		<div id="chat" width="400px" height="400px" data-spy='scroll'></div>
-		<input type="text" id="input" placeholder="Entrez votre message ici">
+		<div class="input-group mb-3">
+  <div class="input-group-prepend">
+  </div>
+		<input type="text" id="input" placeholder="Entrez votre message ici" class="form-control">
+</div>
 	</center>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
 	<script>
-	var socket=io()
-	var user= '<%=user%>'
-	var chat=io.connect('http://localhost:8080/');
-	var div=document.getElementById('chat')
-	document.getElementById('input').addEventListener('keyup', function(e){
-		if(e.keyCode==13){
-			chat.emit('message',  document.getElementById('input').value)
-			document.getElementById('input').value=""
-		}
-	})
+		var socket=io()
+		var user= '<%=user%>'
+		var chat=io.connect('http://192.168.1.7:8080/');
+		var div=document.getElementById('chat')
+		document.getElementById('input').addEventListener('keyup', function(e){
+			if(e.keyCode==13 && document.querySelector('#input').value!=''){
+				chat.emit('message',  '<strong>'+user+'</strong>'+': '+document.getElementById('input').value)
+				document.getElementById('input').value=""
+			}
+		})
 
-	chat.on("send-message", function(data){
-		var p = document.createElement('p')
-		p.innerHTML ='<strong>'+user+'</strong>'+': '+data
-		div.append(p)
-	})
-</script>
-<%- include('partials/footer.ejs')%>
+		chat.on("send-message", function(data){
+			var p = document.createElement('p')
+			p.innerHTML =data
+			div.append(p)
+			document.querySelector('#chat').scrollTo(0,document.querySelector("#chat").scrollHeight)
+		})
+	</script>
+	<%- include('partials/footer.ejs')%>

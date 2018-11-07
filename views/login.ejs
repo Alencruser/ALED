@@ -1,9 +1,9 @@
 <%- include('partials/head.ejs')%>
-<title></title>
+<title><%if(locals.register){%>S'engregistrer<%}else{%>Se connecter<%}%></title>
 </head>
-<body>
+<body class="container-fluid">
 	<%-include('partials/navbar.ejs')%>
-	<div class="col-sm-4 offset-sm-4">
+	<div class="col-sm-12 col-md-4 offset-md-4 col-lg-4 offset-lg-4 col-12">
 		<form action="<%if(locals.register){%>/signup<%}else{%>/connect<%}%>" method="POST">
 			<div class="form-group">
 				<label for="pseudo">Pseudonyme</label>

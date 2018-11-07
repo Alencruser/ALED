@@ -22,16 +22,17 @@ app.use(session({secret: 'idontknowwhy',
 app.use(cookieParser())
 app.use(flash())
 
+//Page du chat
 app.get('/',(req,res)=>{
 	sess=req.session
 	if(sess.pseudo)res.render('index',{token:sess.idUser,user:sess.pseudo})
 		else res.redirect('/login')
 	})
-
+//Page connexion
 app.get('/login',(req,res)=>{
 	res.render('login')
 })
-
+//Reception formulaire connexion
 app.post('/connect',(req,res)=>{
 	let pseudo=ent.encode(req.body.pseudo);
 	let pass=ent.encode(req.body.pass);
@@ -59,7 +60,7 @@ app.post('/connect',(req,res)=>{
 			}
 		})
 })
-
+//Page enregistrement
 app.get('/register',(req,res)=>{
 	res.render('login',{register:'need to register'})
 })
@@ -76,7 +77,7 @@ var chat = io
 			chat.emit('send-message', data)
 		})
 })
-
+//Reception de formulaire inscription 
 app.post('/signup',(req,res)=>{
 	function boolit(p){
 		if(p=='oui'){
@@ -110,7 +111,7 @@ app.post('/signup',(req,res)=>{
 		})
 	})
 })
-
+//Deconnexion
 app.get('/logout',(req,res)=>{
 	req.session.destroy((err)=> {
 		if(err) {
@@ -120,7 +121,11 @@ app.get('/logout',(req,res)=>{
 		}
 	})
 })
-
+//Redirection des utilisateurs si ils accèdent à des pages qui n'existent pas
+app.all('*', function(req, res) {
+  res.redirect("/");
+});
+//Ouverture du serveur
 http.listen(8080,()=>{
 	console.log('La plupart des gens disent qu\'on a besoin d\'amour pour vivre. En fait, on a surtout besoin d\'oxygène !')
 })
